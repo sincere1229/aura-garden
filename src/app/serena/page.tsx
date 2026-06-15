@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import Starfield from "@/components/Starfield";
 
 export const metadata: Metadata = {
   title: "Serena | 月のヒーラー",
@@ -139,6 +141,80 @@ export default function SerenaPage() {
               ただ静かに、光を感じてください。」
             </p>
             <p className="mt-4 text-sm tracking-[0.2em] text-white/75">— Serena —</p>
+          </section>
+        </Reveal>
+
+        {/* Serenaの使命 */}
+        <Reveal>
+          <section className="mt-20 text-center">
+            <p className="moon-divider justify-center text-xs uppercase tracking-[0.35em] text-lavender-deep">
+              Mission
+            </p>
+            <h2 className="mt-6 font-display text-2xl text-plum-900 sm:text-3xl">
+              Serenaの使命
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-plum-900/70 sm:text-base">
+              Serenaは、Aura Gardenを訪れた人が、自分本来の光を思い出すための案内役です。
+              <br className="hidden sm:block" />
+              誰かと比べるのではなく、無理に変わろうとするのでもなく、あなたの内側にすでにある優しさ・直感・癒しの力に、そっと気づけるように寄り添います。
+              <br className="hidden sm:block" />
+              月の光のように静かに、必要なタイミングで、必要なメッセージを届ける存在です。
+            </p>
+          </section>
+        </Reveal>
+
+        {/* Serenaの言葉づかい */}
+        <Reveal delay={100}>
+          <section className="mt-20 text-center">
+            <p className="moon-divider justify-center text-xs uppercase tracking-[0.35em] text-lavender-deep">
+              Voice
+            </p>
+            <h2 className="mt-6 font-display text-2xl text-plum-900 sm:text-3xl">
+              Serenaの言葉づかい
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-plum-900/70 sm:text-base">
+              Serenaのメッセージは、読む人が安心できるように、やさしい「です・ます調」で統一しています。
+            </p>
+
+            <div className="glass-card mx-auto mt-8 max-w-xl rounded-3xl p-8 text-left">
+              <ul className="space-y-3 text-sm leading-relaxed text-plum-900/75">
+                <li>・やさしく、落ち着いた表現にします</li>
+                <li>・です・ます調で統一します</li>
+                <li>・断定しすぎない言い方を心がけます</li>
+                <li>・不安をあおる表現は使いません</li>
+                <li>・医療的な効果効能については言いません</li>
+                <li>
+                  ・「〜かもしれません」「〜を意識してみましょう」「〜がおすすめです」など、やわらかい言葉で伝えます
+                </li>
+                <li>・最後は、安心感や希望を残して終えるようにしています</li>
+              </ul>
+            </div>
+          </section>
+        </Reveal>
+
+        {/* Serenaの個別鑑定 CTA */}
+        <Reveal delay={100}>
+          <section className="mt-20">
+            <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-lavender-deep via-[#8a78b8] to-aqua-300 px-6 py-14 text-center text-white sm:px-12 sm:py-16">
+              <Starfield count={24} />
+              <div className="relative">
+                <h2 className="font-display text-2xl leading-relaxed sm:text-3xl">
+                  Serenaの個別鑑定を受ける
+                </h2>
+                <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/85">
+                  オーラ・チャクラ・波動タイプをもとに、今のあなたに必要なメッセージをSerenaがやさしくお届けします。
+                  <br className="hidden sm:block" />
+                  恋愛・仕事・人間関係・これからの流れなど、あなた専用の鑑定書としてお受け取りいただけます。
+                </p>
+                <Link
+                  href="/reading"
+                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
+                >
+                  Serenaの個別鑑定を見る
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
           </section>
         </Reveal>
       </div>
