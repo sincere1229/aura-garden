@@ -1,13 +1,12 @@
 import Link from "next/link";
 import MoonMark from "./MoonMark";
-
 const links = [
   { href: "/", label: "Top" },
+  { href: "/diagnosis", label: "Diagnosis" },
   { href: "/music", label: "Music" },
   { href: "/serena", label: "Serena" },
   { href: "/affirmation", label: "Affirmation" },
 ];
-
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-lavender-200/60 bg-moon-50/70 backdrop-blur-md">
