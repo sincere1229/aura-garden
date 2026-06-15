@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --moon-50: #faf8fd;
+  --moon-100: #f3eefa;
+  --lavender-200: #e3d6f3;
+  --lavender-300: #cbb6e8;
+  --lavender-400: #b59bd9;
+  --lavender-deep: #6f5a96;
+  --plum-900: #2e2a45;
+  --silver-300: #d6d9e6;
+  --silver-400: #b9bdd1;
+  --aqua-200: #c4e9ee;
+  --aqua-300: #a3d9e1;
+  --gold-soft: #e7d9b8;
+}
+
+@theme inline {
+  --color-moon-50: var(--moon-50);
+  --color-moon-100: var(--moon-100);
+  --color-lavender-200: var(--lavender-200);
+  --color-lavender-300: var(--lavender-300);
+  --color-lavender-400: var(--lavender-400);
+  --color-lavender-deep: var(--lavender-deep);
+  --color-plum-900: var(--plum-900);
+  --color-silver-300: var(--silver-300);
+  --color-silver-400: var(--silver-400);
+  --color-aqua-200: var(--aqua-200);
+  --color-aqua-300: var(--aqua-300);
+  --color-gold-soft: var(--gold-soft);
+  --font-display: "Cormorant Garamond", "Shippori Mincho", serif;
+  --font-jp-display: "Shippori Mincho", serif;
+  --font-body: "Noto Sans JP", "Hiragino Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, #faf8fd 0%, #f3eefa 40%, #eef0fb 100%);
+  color: var(--plum-900);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-jp-display {
+  font-family: var(--font-jp-display);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(111, 90, 150, 0.08);
+}
+
+.moon-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.moon-divider::before,
+.moon-divider::after {
+  content: "";
+  height: 1px;
+  width: 48px;
+  background: linear-gradient(90deg, transparent, var(--lavender-300));
+}
+
+.moon-divider::after {
+  background: linear-gradient(90deg, var(--lavender-300), transparent);
+}
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.85); }
+  50% { opacity: 0.85; transform: scale(1.15); }
+}
+
+@keyframes drift {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
+.drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star, .drift, .reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Progressive enhancement: if JS never runs, content stays visible */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--lavender-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
