@@ -21,6 +21,7 @@ import {
   pickWinner,
   type ChoiceQuestion,
 } from "@/data/diagnosis";
+import { ENTERTAINMENT_NOTE } from "@/data/frequency";
 
 /* ===================== 共通パーツ ===================== */
 
@@ -637,6 +638,29 @@ export default function DiagnosisPage() {
       {/* Tabs */}
       <section className="px-5 pb-20 sm:px-8 sm:pb-28">
         <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <div className="glass-card mb-10 flex flex-col items-center gap-4 rounded-3xl p-6 text-center sm:flex-row sm:text-left">
+              <div className="flex-1">
+                <p className="text-xs uppercase tracking-[0.2em] text-lavender-deep">
+                  Serena&apos;s Frequency Garden
+                </p>
+                <h3 className="mt-2 font-display text-xl text-plum-900">
+                  月光ヒーリングチューナー
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-plum-900/65">
+                  今の気分に合わせて周波数を選び、Serenaの月光ガーデンで心を整えるミニ体験です。
+                </p>
+              </div>
+              <Link
+                href="/frequency"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-lavender-deep px-6 py-3 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
+              >
+                チューナーを開く
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </Reveal>
+
           <div className="mb-10 flex flex-wrap justify-center gap-3">
             {TABS.map((t) => (
               <button
@@ -656,6 +680,10 @@ export default function DiagnosisPage() {
           {tab === "aura" && <AuraDiagnosis key="aura" />}
           {tab === "chakra" && <ChakraDiagnosis key="chakra" />}
           {tab === "wave" && <WaveTypeDiagnosis key="wave" />}
+
+          <p className="mx-auto mt-10 max-w-md text-center text-xs leading-relaxed text-plum-900/40">
+            {ENTERTAINMENT_NOTE}
+          </p>
         </div>
       </section>
     </div>
