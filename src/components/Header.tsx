@@ -1,12 +1,15 @@
 import Link from "next/link";
 import MoonMark from "./MoonMark";
+
 const links = [
   { href: "/", label: "Top" },
-  { href: "/diagnosis", label: "Diagnosis" },
   { href: "/music", label: "Music" },
+  { href: "/diagnosis", label: "Diagnosis" },
+  { href: "/frequency", label: "Tuner" },
   { href: "/serena", label: "Serena" },
   { href: "/affirmation", label: "Affirmation" },
 ];
+
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-lavender-200/60 bg-moon-50/70 backdrop-blur-md">
@@ -18,7 +21,7 @@ export default function Header() {
           </span>
         </Link>
         <nav aria-label="メインナビゲーション">
-          <ul className="flex items-center gap-4 text-sm tracking-wide text-plum-900/80 sm:gap-8 sm:text-base">
+          <ul className="flex items-center gap-3 text-sm tracking-wide text-plum-900/80 sm:gap-6 sm:text-base">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
