@@ -1,19 +1,18 @@
 // src/components/ReadingCTABanner.tsx
-// トップページ・診断結果ページ・Serenaページ共通の個別鑑定導線
-// 外部リンク(ココナラ/STORES/PAY.JP等)に対応
+// ③ HP導線修正：「Serena個別鑑定を申し込む」に統一
+//    将来的にここの READING_URL をココナラURLに差し替えるだけでOK
+// ④ デザイン方針：「診断結果」ではなく「Serenaから届く手紙」体験を優先
 
 import Link from "next/link";
 import Starfield from "@/components/Starfield";
+import { SNS } from "@/data/sns";
 
-// 確定したら差し替え。外部URLの場合はそのまま記入。
-const READING_URL = "/reading";
-const READING_IS_EXTERNAL = false;
+// ── 将来ここをココナラURLに差し替えてください ──
+// 例: "https://coconala.com/services/XXXXXXX"
+const READING_URL = SNS.reading.url;
+const READING_IS_EXTERNAL = READING_URL.startsWith("http");
 
 export default function ReadingCTABanner() {
-  const linkProps = READING_IS_EXTERNAL
-    ? { href: READING_URL, target: "_blank", rel: "noopener noreferrer" }
-    : { href: READING_URL };
-
   return (
     <section className="px-5 py-14 sm:px-8 sm:py-20">
       <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-lavender-deep via-[#8a78b8] to-aqua-300 px-6 py-14 text-center text-white sm:px-12 sm:py-16">
@@ -22,20 +21,40 @@ export default function ReadingCTABanner() {
           <p className="text-xs uppercase tracking-[0.3em] text-white/70">
             Serena&apos;s Reading
           </p>
+          {/* ④ 「手紙」体験：タイトルをSerenaからの語りかけに変更 */}
           <h2 className="mt-4 font-display text-2xl leading-relaxed sm:text-3xl">
-            Serenaの個別鑑定を受ける
+            Serenaから、あなたへ
           </h2>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/85">
-            オーラ・チャクラ・波動タイプをもとに、今のあなたに必要なメッセージをSerenaがやさしくお届けします。
-            恋愛・仕事・人間関係・これからの流れなど、あなた専用の鑑定書としてお受け取りいただけます。
+            オーラ・チャクラ・波動タイプをもとに、
+            今のあなたに必要なメッセージをSerenaがやさしくお届けします。
+            <br className="hidden sm:block" />
+            恋愛・仕事・人間関係・これからの流れなど、
+            あなた専用の鑑定書としてお受け取りいただけます。
           </p>
-          <Link
-            {...linkProps}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
-          >
-            Serenaの個別鑑定を受ける
-            <span aria-hidden="true">→</span>
-          </Link>
+          {/* ③ ボタン文言を「Serena個別鑑定を申し込む」に統一 */}
+          {READING_IS_EXTERNAL ? (
+            <a
+              href={READING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
+            >
+              ✨ Serena個別鑑定を申し込む
+              <span aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <Link
+              href={READING_URL}
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
+            >
+              ✨ Serena個別鑑定を申し込む
+              <span aria-hidden="true">→</span>
+            </Link>
+          )}
+          <p className="mt-3 text-xs text-white/50">
+            現在準備中です。LINEよりお問い合わせください。
+          </p>
         </div>
       </div>
     </section>
