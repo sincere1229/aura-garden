@@ -4,6 +4,8 @@ import Link from "next/link";
 import Starfield from "@/components/Starfield";
 import Reveal from "@/components/Reveal";
 import MoonMark from "@/components/MoonMark";
+import SerenaFooterCard from "@/components/SerenaFooterCard";
+import ReadingCTABanner from "@/components/ReadingCTABanner";
 
 export const metadata: Metadata = {
   title: "Aura Garden | あなた本来の光を思い出す場所",
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
     "Aura Garden は、月のヒーラー Serena とともに贈るヒーリング音楽ブランド。YouTubeのヒーリング音楽、癒しのアファメーションで、眠りと心を静かに整えます。",
 };
 
-const YOUTUBE_URL = "https://www.youtube.com/@AuraGarden";
+const YOUTUBE_URL = "https://www.youtube.com/@AuraGardenJP";
 
 export default function Home() {
   return (
@@ -34,31 +36,33 @@ export default function Home() {
               とともに贈るヒーリング音楽ブランド。睡眠・瞑想・安心のひとときに、静かな波動をお届けします。
             </p>
             <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:items-start">
-<Link
-             href="/diagnosis"
-             className="group inline-flex items-center gap-3 rounded-full bg-lavender-deep px-7 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
-           >
-無料診断をはじめる
-<span aria-hidden="true">→</span>
-</Link>
-<a
-             href={YOUTUBE_URL}
-             target="_blank"
-             rel="noopener noreferrer"
-             className="inline-flex items-center gap-2 rounded-full border border-lavender-300 px-7 py-3.5 text-sm font-medium tracking-wide text-plum-900 transition-colors hover:bg-white/60"
-           >
-<svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
-<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5v-7l6.1 3.5-6.1 3.5Z" />
-</svg>
-YouTubeで聴く
-</a>
-<Link
-             href="/affirmation"
-             className="inline-flex items-center gap-2 rounded-full border border-lavender-300 px-7 py-3.5 text-sm font-medium tracking-wide text-plum-900 transition-colors hover:bg-white/60"
-           >
-今日のアファメーションを見る
-</Link>
-</div>
+              {/* 無料診断ボタン（メインCTA） */}
+              <Link
+                href="/diagnosis"
+                className="inline-flex items-center gap-2 rounded-full bg-lavender-deep px-7 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
+              >
+                無料診断をはじめる
+                <span aria-hidden="true">→</span>
+              </Link>
+              {/* YouTube */}
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-lavender-300 px-7 py-3.5 text-sm font-medium tracking-wide text-plum-900 transition-colors hover:bg-white/60"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+                  <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5v-7l6.1 3.5-6.1 3.5Z" />
+                </svg>
+                YouTubeで聴く
+              </a>
+              <Link
+                href="/affirmation"
+                className="inline-flex items-center gap-2 rounded-full border border-lavender-300 px-7 py-3.5 text-sm font-medium tracking-wide text-plum-900 transition-colors hover:bg-white/60"
+              >
+                今日のアファメーションを見る
+              </Link>
+            </div>
           </div>
           <div className="order-1 w-64 sm:order-2 sm:w-[420px] sm:flex-1">
             <div className="drift relative mx-auto aspect-[367/334] w-full max-w-sm overflow-hidden rounded-[2rem] shadow-2xl shadow-lavender-deep/20 ring-1 ring-white/70 sm:max-w-none">
@@ -125,18 +129,9 @@ YouTubeで聴く
 
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {[
-              {
-                title: "深い眠りへの月光ピアノ",
-                desc: "ゆっくりとしたピアノの旋律で、眠りへ誘います。",
-              },
-              {
-                title: "瞑想のためのシンギングボウル",
-                desc: "倍音が心の波を静め、瞑想に深く入るための音色。",
-              },
-              {
-                title: "雨音とラベンダーの夜",
-                desc: "やさしい雨音と弦の音色で、安心感に包まれる時間。",
-              },
+              { title: "深い眠りへの月光ピアノ", desc: "ゆっくりとしたピアノの旋律で、眠りへ誘います。" },
+              { title: "瞑想のためのシンギングボウル", desc: "倍音が心の波を静め、瞑想に深く入るための音色。" },
+              { title: "雨音とラベンダーの夜", desc: "やさしい雨音と弦の音色で、安心感に包まれる時間。" },
             ].map((item, i) => (
               <Reveal delay={i * 120} key={item.title}>
                 <div className="glass-card flex h-full flex-col rounded-2xl p-6">
@@ -145,12 +140,8 @@ YouTubeで聴く
                       <path d="M8 5v14l11-7Z" />
                     </svg>
                   </div>
-                  <h3 className="font-display text-lg text-plum-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-plum-900/60">
-                    {item.desc}
-                  </p>
+                  <h3 className="font-display text-lg text-plum-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-plum-900/60">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -158,7 +149,39 @@ YouTubeで聴く
         </div>
       </section>
 
-      {/* Serena intro */}
+      {/* 診断コーナー */}
+      <section className="px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal>
+            <p className="moon-divider justify-center text-xs uppercase tracking-[0.35em] text-lavender-deep">
+              Serena&apos;s Diagnosis
+            </p>
+            <h2 className="mt-6 font-display text-3xl text-plum-900 sm:text-4xl">
+              無料診断を受けてみる
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-plum-900/65 sm:text-base">
+              オーラ・チャクラ・波動タイプ——3つの診断で、今のあなたの状態をそっと映し出します。
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/diagnosis"
+                className="inline-flex items-center gap-2 rounded-full bg-lavender-deep px-8 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
+              >
+                診断をはじめる
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/frequency"
+                className="inline-flex items-center gap-2 rounded-full border border-lavender-300 px-8 py-3.5 text-sm font-medium tracking-wide text-plum-900 transition-colors hover:bg-white/60"
+              >
+                月光ヒーリングチューナー
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Serena紹介 */}
       <section className="px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 sm:flex-row">
           <Reveal className="order-2 w-56 flex-shrink-0 sm:order-1 sm:w-72">
@@ -216,6 +239,12 @@ YouTubeで聴く
           </div>
         </div>
       </section>
+
+      {/* Serena導線 */}
+      <SerenaFooterCard />
+
+      {/* 個別鑑定CTA */}
+      <ReadingCTABanner />
     </div>
   );
 }
