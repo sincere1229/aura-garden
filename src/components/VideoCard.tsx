@@ -1,71 +1,74 @@
-// src/data/videos.ts
+"use client";
 
-export type HealingVideo = {
-  youtubeId: string;
-  title: string;
-  hz: number | null;
-  desc: string;
-};
+// src/components/VideoCard.tsx
+// YouTube埋め込みカード（サムネイル表示→クリックでiframe再生）
 
-export const HEALING_VIDEOS: HealingVideo[] = [
-  {
-    youtubeId: "kzp3u3hhu1I",
-    title: "【528Hz】心をほどく癒しのヒーリングミュージック｜波の音付き・10分",
-    hz: 528,
-    desc: "心をやさしく整えたいときにおすすめです。波の音とともに、そっとリラックスしてみてください。",
-  },
-  {
-    youtubeId: "NjIwjTntWyI",
-    title: "【852Hz】集中したいときのスピリチュアルヒーリングミュージック｜焚き火の音付き・10分",
-    hz: 852,
-    desc: "静かに自分の内側と向き合いたいとき、集中したいときにおすすめです。",
-  },
-  {
-    youtubeId: "qFo_SuvFhII",
-    title: "【741Hz】森に包まれる癒しのヒーリングミュージック｜10分",
-    hz: 741,
-    desc: "頭の中を整理したいとき、すっきりした気持ちで過ごしたいときにおすすめです。",
-  },
-  {
-    youtubeId: "w_cOjWhTMrc",
-    title: "【639Hz】心をほどく癒しのヒーリングミュージック｜雨の音付き・10分",
-    hz: 639,
-    desc: "人とのつながりを大切にしたいとき、気持ちを和ませたいときにおすすめです。",
-  },
-  {
-    youtubeId: "tR5PXJyhGdw",
-    title: "【417Hz】気分を切り替える自然ヒーリングミュージック｜風の音と鳥のさえずり・10分",
-    hz: 417,
-    desc: "気持ちを切り替えたいとき、新しい一歩を後押ししたいときにおすすめです。",
-  },
-  {
-    youtubeId: "CrhUAPZ-QxI",
-    title: "【852Hz】静かな夜のヒーリングミュージック｜風の音付き・10分",
-    hz: 852,
-    desc: "夜、静かに自分を整えたいときにおすすめです。",
-  },
-  {
-    youtubeId: "w6tUT8C7ew4",
-    title: "【396Hz】おやすみ前に聴く癒しのヒーリングミュージック｜波の音付き・10分",
-    hz: 396,
-    desc: "眠りにつく前、重たい気持ちをそっと手放したいときにおすすめです。",
-  },
-  {
-    youtubeId: "b44BfPmUTjc",
-    title: "【852Hz】心を整える自然ヒーリングミュージック｜鐘の音付き・10分",
-    hz: 852,
-    desc: "心を静かに整えたいとき、リラックスタイムにおすすめです。",
-  },
-  {
-    youtubeId: "GBTWQ4dBQLE",
-    title: "【417Hz】心をほどく自然ヒーリングミュージック｜波の音付き・10分",
-    hz: 417,
-    desc: "気持ちを切り替えたいとき、心を軽くしたいときにおすすめです。",
-  },
-  {
-    youtubeId: "XUKO3VoXbF4",
-    title: "【396Hz】ヒーリングワーク向け癒しの音楽｜森の音とハーブのヒーリングBGM・10分",
-    hz: 396,
-    desc: "ヒーリングワークやリラックスタイムに。森の音とともに、深く息を吐いてみてください。",
-  },
-];
+import { useState } from "react";
+import type { HealingVideo } from "@/data/videos";
+
+export default function VideoCard({ video }: { video: HealingVideo }) {
+  const [playing, setPlaying] = useState(false);
+  const thumb = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+
+  return (
+    <div className="glass-card flex flex-col overflow-hidden rounded-2xl">
+      {/* 動画エリア */}
+      <div className="relative aspect-video w-full overflow-hidden bg-plum-900/10">
+        {playing ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
+            title={video.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full"
+          />
+        ) : (
+          <button
+            onClick={() => setPlaying(true)}
+            className="group absolute inset-0 flex items-center justify-center"
+            aria-label={`${video.title}を再生`}
+          >
+            {/* サムネイル */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={thumb}
+              alt={video.title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            {/* オーバーレイ */}
+            <div className="absolute inset-0 bg-plum-900/20 transition-colors group-hover:bg-plum-900/30" />
+            {/* 再生ボタン */}
+            <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-110">
+              <svg viewBox="0 0 24 24" className="h-6 w-6 translate-x-0.5 fill-lavender-deep">
+                <path d="M8 5v14l11-7Z" />
+              </svg>
+            </div>
+          </button>
+        )}
+      </div>
+
+      {/* テキスト */}
+      <div className="flex flex-1 flex-col p-4">
+        {video.hz && (
+          <span className="mb-2 inline-block w-fit rounded-full bg-lavender-200 px-3 py-0.5 text-xs font-medium text-lavender-deep">
+            {video.hz}Hz
+          </span>
+        )}
+        <h3 className="font-display text-base text-plum-900 leading-snug">
+          {video.title}
+        </h3>
+        <p className="mt-2 text-xs leading-relaxed text-plum-900/55 flex-1">
+          {video.desc}
+        </p>
+        <a
+          href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 text-xs text-lavender-deep underline-offset-4 hover:underline"
+        >
+          YouTubeで開く →
+        </a>
+      </div>
+    </div>
+  );
+}
