@@ -22,6 +22,7 @@ import {
   type ChoiceQuestion,
 } from "@/data/diagnosis";
 import { ENTERTAINMENT_NOTE } from "@/data/frequency";
+import DiagnosisLineBanner from "@/components/DiagnosisLineBanner";
 
 /* ===================== 共通パーツ ===================== */
 
@@ -313,6 +314,7 @@ function AuraDiagnosis() {
             saveKey="aura"
             savePayload={{ type: "オーラ診断", result: r.name }}
           />
+          <DiagnosisLineBanner />
           <button
             onClick={reset}
             className="mt-5 text-sm text-plum-900/50 underline-offset-4 hover:underline"
@@ -451,6 +453,7 @@ function ChakraDiagnosis() {
               results: results.map((r) => ({ name: r.name, pct: r.pct })),
             }}
           />
+          <DiagnosisLineBanner />
           <button
             onClick={reset}
             className="mt-5 text-sm text-plum-900/50 underline-offset-4 hover:underline"
@@ -569,6 +572,7 @@ function WaveTypeDiagnosis() {
             saveKey="wave"
             savePayload={{ type: "波動タイプ診断", result: r.name }}
           />
+          <DiagnosisLineBanner />
           <button
             onClick={reset}
             className="mt-5 text-sm text-plum-900/50 underline-offset-4 hover:underline"
