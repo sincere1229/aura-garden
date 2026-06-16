@@ -1,92 +1,71 @@
-export type VideoItem = {
-  id: string;
-  title: string;
-  category: string;
-  duration: string;
-  description: string;
+// src/data/videos.ts
+
+export type HealingVideo = {
   youtubeId: string;
+  title: string;
+  hz: number | null;
+  desc: string;
 };
 
-// youtubeId は仮のIDです。実際の動画IDに置き換えてください。
-export const videos: VideoItem[] = [
+export const HEALING_VIDEOS: HealingVideo[] = [
   {
-    id: "v01",
-    title: "深い眠りへの月光ピアノ",
-    category: "睡眠",
-    duration: "3:00:00",
-    description: "ゆっくりとしたピアノの旋律が、月明かりのように心を静め、深い眠りへと誘います。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "kzp3u3hhu1I",
+    title: "【528Hz】心をほどく癒しのヒーリングミュージック｜波の音付き・10分",
+    hz: 528,
+    desc: "心をやさしく整えたいときにおすすめです。波の音とともに、そっとリラックスしてみてください。",
   },
   {
-    id: "v02",
-    title: "瞑想のためのシンギングボウル",
-    category: "瞑想",
-    duration: "1:00:00",
-    description: "シンギングボウルの倍音が体の奥に響き、瞑想の時間を深くサポートします。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "NjIwjTntWyI",
+    title: "【852Hz】集中したいときのスピリチュアルヒーリングミュージック｜焚き火の音付き・10分",
+    hz: 852,
+    desc: "静かに自分の内側と向き合いたいとき、集中したいときにおすすめです。",
   },
   {
-    id: "v03",
-    title: "雨音とラベンダーの夜",
-    category: "睡眠",
-    duration: "2:30:00",
-    description: "やさしい雨音と弦楽器の音色が重なり、安心感に包まれる夜を演出します。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "qFo_SuvFhII",
+    title: "【741Hz】森に包まれる癒しのヒーリングミュージック｜10分",
+    hz: 741,
+    desc: "頭の中を整理したいとき、すっきりした気持ちで過ごしたいときにおすすめです。",
   },
   {
-    id: "v04",
-    title: "朝のはじまり・光の波動",
-    category: "リラックス",
-    duration: "45:00",
-    description: "やわらかな光のような旋律で、一日のはじまりを穏やかに整えます。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "w_cOjWhTMrc",
+    title: "【639Hz】心をほどく癒しのヒーリングミュージック｜雨の音付き・10分",
+    hz: 639,
+    desc: "人とのつながりを大切にしたいとき、気持ちを和ませたいときにおすすめです。",
   },
   {
-    id: "v05",
-    title: "Serenaと過ごす癒しの庭",
-    category: "癒し",
-    duration: "1:30:00",
-    description: "Aura Gardenの世界観をイメージした、蓮と星空のサウンドスケープ。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "tR5PXJyhGdw",
+    title: "【417Hz】気分を切り替える自然ヒーリングミュージック｜風の音と鳥のさえずり・10分",
+    hz: 417,
+    desc: "気持ちを切り替えたいとき、新しい一歩を後押ししたいときにおすすめです。",
   },
   {
-    id: "v06",
-    title: "ソルフェジオ周波数 528Hz",
-    category: "瞑想",
-    duration: "1:00:00",
-    description: "心と身体のバランスを整えるとされる周波数を用いたヒーリングサウンド。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "CrhUAPZ-QxI",
+    title: "【852Hz】静かな夜のヒーリングミュージック｜風の音付き・10分",
+    hz: 852,
+    desc: "夜、静かに自分を整えたいときにおすすめです。",
   },
   {
-    id: "v07",
-    title: "月のしずく・水音セラピー",
-    category: "睡眠",
-    duration: "2:00:00",
-    description: "静かな水音と幻想的な音色で、思考を緩めて眠りに近づけます。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "w6tUT8C7ew4",
+    title: "【396Hz】おやすみ前に聴く癒しのヒーリングミュージック｜波の音付き・10分",
+    hz: 396,
+    desc: "眠りにつく前、重たい気持ちをそっと手放したいときにおすすめです。",
   },
   {
-    id: "v08",
-    title: "午後のティータイム・癒しBGM",
-    category: "リラックス",
-    duration: "1:00:00",
-    description: "穏やかな旋律で、休憩時間をやさしい時間に変えるBGM。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "b44BfPmUTjc",
+    title: "【852Hz】心を整える自然ヒーリングミュージック｜鐘の音付き・10分",
+    hz: 852,
+    desc: "心を静かに整えたいとき、リラックスタイムにおすすめです。",
   },
   {
-    id: "v09",
-    title: "星空のアファメーションタイム",
-    category: "癒し",
-    duration: "40:00",
-    description: "アファメーションを聴きながら、静かに自分自身と向き合う時間。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "GBTWQ4dBQLE",
+    title: "【417Hz】心をほどく自然ヒーリングミュージック｜波の音付き・10分",
+    hz: 417,
+    desc: "気持ちを切り替えたいとき、心を軽くしたいときにおすすめです。",
   },
   {
-    id: "v10",
-    title: "深呼吸のための瞑想ガイド",
-    category: "瞑想",
-    duration: "20:00",
-    description: "呼吸に意識を向けながら、心を落ち着けるためのガイド付き瞑想音楽。",
-    youtubeId: "dQw4w9WgXcQ",
+    youtubeId: "XUKO3VoXbF4",
+    title: "【396Hz】ヒーリングワーク向け癒しの音楽｜森の音とハーブのヒーリングBGM・10分",
+    hz: 396,
+    desc: "ヒーリングワークやリラックスタイムに。森の音とともに、深く息を吐いてみてください。",
   },
 ];
