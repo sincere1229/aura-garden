@@ -23,6 +23,7 @@ import {
 } from "@/data/diagnosis";
 import { ENTERTAINMENT_NOTE } from "@/data/frequency";
 import DiagnosisLineBanner from "@/components/DiagnosisLineBanner";
+import MoonOracleCard from "@/components/MoonOracleCard";
 
 /* ===================== 共通パーツ ===================== */
 
@@ -279,6 +280,8 @@ function AuraDiagnosis() {
   if (step >= total) {
     const winnerKey = pickWinner(scores);
     const r = AURA_RESULTS[winnerKey];
+    // スコア合計をseedにして診断ごとに固定されたカードを選ぶ
+    const oracleSeed = Object.values(scores).reduce((a, b) => a + b, 0);
     return (
       <Reveal>
         <div className="glass-card mx-auto max-w-md rounded-3xl p-8 text-center">
@@ -307,6 +310,8 @@ function AuraDiagnosis() {
 
           <SerenaMessage text={SERENA_MESSAGES.aura[winnerKey]} />
           <FreqCard freqKey={winnerKey} />
+          {/* ★ Moon Oracle カード */}
+          <MoonOracleCard seed={oracleSeed} />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
@@ -441,6 +446,8 @@ function ChakraDiagnosis() {
 
           <SerenaMessage text={SERENA_MESSAGES.chakra[msgTone]} />
           <FreqCard freqKey={freqKey} />
+          {/* ★ Moon Oracle カード */}
+          <MoonOracleCard seed={overall} />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
@@ -565,6 +572,8 @@ function WaveTypeDiagnosis() {
 
           <SerenaMessage text={SERENA_MESSAGES.wave[winnerKey]} />
           <FreqCard freqKey={winnerKey} />
+          {/* ★ Moon Oracle カード */}
+          <MoonOracleCard seed={Object.values(scores).reduce((a, b) => a + b, 0)} />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
