@@ -14,15 +14,32 @@ export default function ReadingCTABanner() {
           <h2 className="mt-4 font-display text-2xl leading-relaxed sm:text-3xl">
             Serenaから、あなたへ
           </h2>
+
+          {/* 鑑定セクション コピー改善：無料診断は入り口、個別鑑定で何を読み解くか */}
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/85">
-            オーラ・チャクラ・波動タイプをもとに、今のあなたに必要なメッセージをSerenaがやさしくお届けします。
-            恋愛・仕事・人間関係・これからの流れなど、あなた専用の鑑定書としてお受け取りいただけます。
+            無料診断は、現在の状態を知るための入り口です。個別鑑定では、
+          </p>
+          <ul className="mx-auto mt-3 max-w-sm space-y-1.5 text-left">
+            {[
+              "なぜ今その状態になっているのか",
+              "本来のあなたの強み",
+              "心を整えるために必要なこと",
+              "これから意識したい流れ",
+            ].map((p) => (
+              <li key={p} className="flex items-center gap-2 text-sm text-white/90">
+                <span>✓</span>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/85">
+            を、Serenaがやさしく読み解きます。恋愛・仕事・人間関係・将来への不安など、あなただけのためのメッセージを鑑定書としてお届けします。
           </p>
 
-          {/* 無料診断では分からない項目（最終導線改善 修正②） */}
+          {/* 個別鑑定でお届けする内容（見出し変更） */}
           <div className="mx-auto mt-6 max-w-md rounded-2xl bg-white/10 p-5 text-left">
             <p className="text-xs leading-relaxed text-white/80">
-              無料診断では分からない
+              個別鑑定でお届けする内容
             </p>
             <ul className="mt-2 space-y-1.5">
               {[
@@ -39,20 +56,27 @@ export default function ReadingCTABanner() {
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs leading-relaxed text-white/80">
-              をまとめた鑑定書をお届けします。
-            </p>
           </div>
+
+          {/* オーダーメイド訴求（チェックリスト下・ボタン直前） */}
+          <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/75">
+            🌙 一人ひとりの結果をもとに作成するため、完全オーダーメイドでお届けしています。
+          </p>
 
           <a
             href={SNS.reading.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
           >
             ✨ {SNS.reading.label}
             <span aria-hidden="true">→</span>
           </a>
+
+          {/* ボタン下の補足 */}
+          <p className="mt-3 text-[11px] text-white/60">
+            現在はココナラにて受付中です。PDF形式でお届けします。
+          </p>
         </div>
       </div>
     </section>
