@@ -1,17 +1,27 @@
 // src/components/LineTopBanner.tsx
-// ヘッダー直下に表示するLINE登録の上部バー（実装①）
-
+// ヘッダー直下に表示する無料特典の上部バー（最終導線改善 修正①・最優先）
+// 「LINE登録」ではなく「無料特典」を前面に出す設計に変更。
 import Link from "next/link";
 import { SNS } from "@/data/sns";
 
 export default function LineTopBanner() {
   return (
-    <div className="border-b border-lavender-200/60 bg-gradient-to-r from-moon-100 via-[#f3eefa] to-moon-100 px-4 py-2.5">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-4">
-        <p className="text-sm text-plum-900/70">
-          🌙 <span className="font-medium text-plum-900">Serenaとつながる</span>
-          　毎日のメッセージや最新コンテンツをお届けしています。
-        </p>
+    <div className="border-b border-lavender-200/60 bg-gradient-to-r from-moon-100 via-[#f3eefa] to-moon-100 px-4 py-3">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-2 text-center sm:flex-row sm:gap-5">
+        <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-3">
+          <p className="text-xs font-bold text-plum-900/85 sm:text-sm">
+            🎁 LINE登録特典　月のヒーリングBOOK 無料プレゼント
+          </p>
+          <div className="hidden items-center gap-2 sm:flex">
+            {["オーラを整える方法", "チャクラセルフケア", "月光浴ワーク", "Serenaからの特別メッセージ"].map(
+              (p) => (
+                <span key={p} className="text-[11px] text-plum-900/55">
+                  ✓ {p}
+                </span>
+              )
+            )}
+          </div>
+        </div>
         <Link
           href={SNS.line.url}
           target="_blank"
@@ -19,10 +29,7 @@ export default function LineTopBanner() {
           className="inline-flex flex-shrink-0 items-center gap-1.5 rounded-full px-5 py-1.5 text-xs font-bold text-white shadow-md transition-transform hover:scale-[1.03]"
           style={{ background: "#06C755" }}
         >
-          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current" aria-hidden="true">
-            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314" />
-          </svg>
-          LINE登録
+          🌙 無料で受け取る
         </Link>
       </div>
     </div>
