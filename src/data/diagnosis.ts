@@ -167,30 +167,128 @@ export const CHAKRAS: ChakraInfo[] = [
   { id: "crown", name: "クラウンチャクラ", sub: "第7・頭頂", color: "#cbb6e8", icon: "●", theme: "精神性・宇宙とのつながり" },
 ];
 
-export type ChakraQuestion = { chakra: string; q: string; reverse: boolean };
+export type ChakraOpt = { t: string; v: number };
+export type ChakraQuestion = {
+  chakra: string;
+  q: string;
+  reverse: boolean;
+  opts: ChakraOpt[]; // 質問ごとの専用3択（v: 0=低い/1=中間/2=高い、reverseは表示後にpage側で反転処理）
+};
 
-// 各チャクラにつき2問 = 14問。0=不調 / 1=普通 / 2=良好（reverseは反転）
+// 各チャクラにつき2問 = 14問。opts は質問の文脈に合わせた自然な言い回しにしています。
 export const CHAKRA_QUESTIONS: ChakraQuestion[] = [
-  { chakra: "root", q: "最近、地に足がついていない感覚がある", reverse: true },
-  { chakra: "root", q: "生活の基盤（住まい・お金・健康）に安心感がある", reverse: false },
-  { chakra: "sacral", q: "趣味や創作活動を楽しむ余裕がある", reverse: false },
-  { chakra: "sacral", q: "感情をうまく表現できずに溜め込みやすい", reverse: true },
-  { chakra: "solar", q: "「私はできる」という自信を感じている", reverse: false },
-  { chakra: "solar", q: "決断を先延ばしにしてしまうことが多い", reverse: true },
-  { chakra: "heart", q: "周りの人への感謝の気持ちが自然と湧く", reverse: false },
-  { chakra: "heart", q: "人を信じることに不安を感じやすい", reverse: true },
-  { chakra: "throat", q: "本音を言葉にして伝えることができている", reverse: false },
-  { chakra: "throat", q: "言いたいことを飲み込んでしまうことが多い", reverse: true },
-  { chakra: "third_eye", q: "ふとした直感やひらめきを信じられる", reverse: false },
-  { chakra: "third_eye", q: "考えすぎて頭がいっぱいになりやすい", reverse: true },
-  { chakra: "crown", q: "毎日の中に「何か大きな意味」を感じる瞬間がある", reverse: false },
-  { chakra: "crown", q: "目的や意味を見失っている感覚がある", reverse: true },
-];
-
-export const CHAKRA_OPTS = [
-  { t: "そう思わない", v: 0 },
-  { t: "どちらでもない", v: 1 },
-  { t: "そう思う", v: 2 },
+  {
+    chakra: "root", q: "最近、地に足がついていない感覚がある", reverse: true,
+    opts: [
+      { t: "よくある", v: 2 },
+      { t: "たまにある", v: 1 },
+      { t: "ほとんどない", v: 0 },
+    ],
+  },
+  {
+    chakra: "root", q: "生活の基盤（住まい・お金・健康）に安心感がある", reverse: false,
+    opts: [
+      { t: "とても安心している", v: 2 },
+      { t: "まあまあ安心している", v: 1 },
+      { t: "あまり安心できていない", v: 0 },
+    ],
+  },
+  {
+    chakra: "sacral", q: "趣味や創作活動を楽しむ余裕がある", reverse: false,
+    opts: [
+      { t: "十分にある", v: 2 },
+      { t: "少しはある", v: 1 },
+      { t: "今は余裕がない", v: 0 },
+    ],
+  },
+  {
+    chakra: "sacral", q: "感情をうまく表現できずに溜め込みやすい", reverse: true,
+    opts: [
+      { t: "よく溜め込んでしまう", v: 2 },
+      { t: "時々そうなる", v: 1 },
+      { t: "あまり溜め込まない", v: 0 },
+    ],
+  },
+  {
+    chakra: "solar", q: "「私はできる」という自信を感じている", reverse: false,
+    opts: [
+      { t: "強く感じている", v: 2 },
+      { t: "そこそこ感じている", v: 1 },
+      { t: "あまり感じられない", v: 0 },
+    ],
+  },
+  {
+    chakra: "solar", q: "決断を先延ばしにしてしまうことが多い", reverse: true,
+    opts: [
+      { t: "とても多い", v: 2 },
+      { t: "ときどきある", v: 1 },
+      { t: "あまりない", v: 0 },
+    ],
+  },
+  {
+    chakra: "heart", q: "周りの人への感謝の気持ちが自然と湧く", reverse: false,
+    opts: [
+      { t: "いつも湧いてくる", v: 2 },
+      { t: "時々湧いてくる", v: 1 },
+      { t: "あまり湧いてこない", v: 0 },
+    ],
+  },
+  {
+    chakra: "heart", q: "人を信じることに不安を感じやすい", reverse: true,
+    opts: [
+      { t: "よく不安になる", v: 2 },
+      { t: "場合によっては不安になる", v: 1 },
+      { t: "あまり不安にならない", v: 0 },
+    ],
+  },
+  {
+    chakra: "throat", q: "本音を言葉にして伝えることができている", reverse: false,
+    opts: [
+      { t: "しっかり伝えられている", v: 2 },
+      { t: "ある程度は伝えられている", v: 1 },
+      { t: "あまり伝えられていない", v: 0 },
+    ],
+  },
+  {
+    chakra: "throat", q: "言いたいことを飲み込んでしまうことが多い", reverse: true,
+    opts: [
+      { t: "よく飲み込んでしまう", v: 2 },
+      { t: "時々飲み込んでしまう", v: 1 },
+      { t: "あまり飲み込まない", v: 0 },
+    ],
+  },
+  {
+    chakra: "third_eye", q: "ふとした直感やひらめきを信じられる", reverse: false,
+    opts: [
+      { t: "しっかり信じられる", v: 2 },
+      { t: "なんとなく信じられる", v: 1 },
+      { t: "あまり信じられない", v: 0 },
+    ],
+  },
+  {
+    chakra: "third_eye", q: "考えすぎて頭がいっぱいになりやすい", reverse: true,
+    opts: [
+      { t: "よくそうなる", v: 2 },
+      { t: "たまにそうなる", v: 1 },
+      { t: "あまりならない", v: 0 },
+    ],
+  },
+  {
+    chakra: "crown", q: "毎日の中に「何か大きな意味」を感じる瞬間がある", reverse: false,
+    opts: [
+      { t: "よく感じる", v: 2 },
+      { t: "たまに感じる", v: 1 },
+      { t: "あまり感じない", v: 0 },
+    ],
+  },
+  {
+    chakra: "crown", q: "目的や意味を見失っている感覚がある", reverse: true,
+    opts: [
+      { t: "よくある", v: 2 },
+      { t: "たまにある", v: 1 },
+      { t: "あまりない", v: 0 },
+    ],
+  },
 ];
 
 // チャクラごとの推奨周波数マップ
