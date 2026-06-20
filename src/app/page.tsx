@@ -6,8 +6,10 @@ import Reveal from "@/components/Reveal";
 import MoonMark from "@/components/MoonMark";
 import SerenaFooterCard from "@/components/SerenaFooterCard";
 import ReadingCTABanner from "@/components/ReadingCTABanner";
-`import FreeGiftBanner from "@/components/FreeGiftBanner";`
 import SnsSection from "@/components/SnsSection";
+import FreeGiftBanner from "@/components/FreeGiftBanner";
+import CrystalGardenTeaser from "@/components/CrystalGardenTeaser";
+import ComingSoonSection from "@/components/ComingSoonSection";
 import { SNS } from "@/data/sns";
 
 export const metadata: Metadata = {
@@ -83,6 +85,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 🎁 無料プレゼント（LINE登録導線） */}
+      <FreeGiftBanner />
 
       {/* 個別鑑定CTA（トップに1つ目） */}
       <ReadingCTABanner />
@@ -174,6 +179,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Crystal Garden導線（最終導線改善 修正③・トップページ中段） */}
+      <CrystalGardenTeaser />
+
       {/* Serena紹介 */}
       <section className="px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 sm:flex-row">
@@ -234,6 +242,9 @@ export default function Home() {
 
       {/* ⑦ 個別鑑定CTA（2つ目） */}
       <ReadingCTABanner />
+
+      {/* Coming Soon（最終導線改善 修正⑤・トップ下部） */}
+      <ComingSoonSection />
     </div>
   );
 }
