@@ -8,12 +8,17 @@ import Reveal from "@/components/Reveal";
 import {
   AURA_QUESTIONS,
   AURA_RESULTS,
+  AURA_TEASER_POINTS,
+  AURA_LINE_DETAILS,
   CHAKRAS,
   CHAKRA_QUESTIONS,
   CHAKRA_OPTS,
   CHAKRA_FREQ_MAP,
+  CHAKRA_LINE_DETAILS,
   WAVE_QUESTIONS,
   WAVE_RESULTS,
+  WAVE_TEASER_POINTS,
+  WAVE_LINE_DETAILS,
   SERENA_MESSAGES,
   FREQ_BY_KEY,
   YOUTUBE_URL,
@@ -239,6 +244,35 @@ function StartScreen({
   );
 }
 
+/* ===================== LINE限定詳細 ティザーブロック（共通） ===================== */
+// 指示書の「もっと詳しく知りたいですか？」セクション。
+// オーラ・チャクラ・波動それぞれの詳細項目ラベルだけ渡せば共通レイアウトで出せるようにする。
+
+function LineGateTeaser({
+  points,
+}: {
+  points: string[]; // 例: ["オーラの強み", "オーラの整え方", "相性の良い色", "相性の良いパワーストーン", "Serenaからのメッセージ"]
+}) {
+  return (
+    <div className="mt-6 rounded-2xl border border-dashed border-lavender-300 bg-white/50 p-5 text-left">
+      <p className="text-center text-sm font-medium text-plum-900/80">
+        もっと詳しく知りたいですか？
+      </p>
+      <ul className="mt-3 space-y-1.5">
+        {points.map((p) => (
+          <li key={p} className="flex items-center gap-2 text-sm text-plum-900/70">
+            <span className="text-lavender-deep">✓</span>
+            {p}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-center text-xs font-medium tracking-wide text-lavender-deep">
+        LINE限定公開
+      </p>
+    </div>
+  );
+}
+
 /* ===================== 1. オーラ診断 ===================== */
 
 function AuraDiagnosis() {
@@ -280,6 +314,8 @@ function AuraDiagnosis() {
   if (step >= total) {
     const winnerKey = pickWinner(scores);
     const r = AURA_RESULTS[winnerKey];
+    const teaserPoints = AURA_TEASER_POINTS[winnerKey] ?? [];
+    void AURA_LINE_DETAILS; // LINE登録後ページ等で利用予定（将来拡張用に参照を残す）
     // スコア合計をseedにして診断ごとに固定されたカードを選ぶ
     const oracleSeed = Object.values(scores).reduce((a, b) => a + b, 0);
     return (
@@ -292,21 +328,29 @@ function AuraDiagnosis() {
             <ResultOrb color={r.color} glow={r.glow} label={r.key} />
           </div>
           <h2 className="mt-5 font-display text-2xl" style={{ color: r.color }}>
-            {r.name}
+            🌙 {r.name}でした
           </h2>
-          <div className="mt-3 flex flex-wrap justify-center gap-2">
-            {r.keywords.map((k) => (
-              <span
-                key={k}
-                className="rounded-full bg-moon-100 px-3 py-1 text-xs text-plum-900/60"
-              >
-                {k}
-              </span>
+
+          {/* 特徴（ティザー：3つのみ表示） */}
+          <ul className="mt-5 space-y-1.5 text-left">
+            {teaserPoints.map((p) => (
+              <li key={p} className="flex items-center gap-2 text-sm text-plum-900/75">
+                <span className="text-lavender-deep">・</span>
+                {p}
+              </li>
             ))}
-          </div>
-          <p className="mt-5 text-left text-sm leading-relaxed text-plum-900/75">
-            {r.desc}
-          </p>
+          </ul>
+
+          {/* LINE限定詳細ゲート */}
+          <LineGateTeaser
+            points={[
+              "オーラの強み",
+              "オーラの整え方",
+              "相性の良い色",
+              "相性の良いパワーストーン",
+              "Serenaからのメッセージ",
+            ]}
+          />
 
           <SerenaMessage text={SERENA_MESSAGES.aura[winnerKey]} />
           <FreqCard freqKey={winnerKey} />
@@ -408,6 +452,7 @@ function ChakraDiagnosis() {
     );
     const msgTone = overall >= 70 ? "high" : overall >= 45 ? "mid" : "low";
     const freqKey = CHAKRA_FREQ_MAP[lowest.id];
+    void CHAKRA_LINE_DETAILS; // 将来のLINE登録後ページ等で利用予定
 
     return (
       <Reveal>
@@ -416,14 +461,22 @@ function ChakraDiagnosis() {
             あなたの7チャクラ診断結果
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 text-left">
+          {/* 最も優勢/ケアが必要なチャクラのみハイライト表示（指示書の表示例に合わせる） */}
+          <div className="mt-6 text-left">
+            <p className="font-display text-xl" style={{ color: lowest.color }}>
+              {lowest.icon} {lowest.name}
+            </p>
+            <p className="mt-1 text-xs text-plum-900/45">{lowest.theme}</p>
+          </div>
+
+          {/* 全チャクラのバランスはここまで表示（ティザー） */}
+          <div className="mt-4 flex flex-col gap-3 text-left">
             {results.map((c) => (
               <div key={c.id} className="rounded-2xl bg-white/60 p-3">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium text-plum-900">{c.name}</span>
                   <span className="text-plum-900/50">{c.pct}%</span>
                 </div>
-                <p className="mt-1 text-[11px] text-plum-900/45">{c.theme}</p>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-lavender-200">
                   <div
                     className="h-full rounded-full transition-all duration-700"
@@ -443,6 +496,16 @@ function ChakraDiagnosis() {
               今、最もケアが必要なのは「{lowest.name}」（{lowest.theme}）です。
             </p>
           </div>
+
+          {/* LINE限定詳細ゲート */}
+          <LineGateTeaser
+            points={[
+              "チャクラ詳細解説",
+              "バランス調整方法",
+              "おすすめヒーリング",
+              "Serenaからのメッセージ",
+            ]}
+          />
 
           <SerenaMessage text={SERENA_MESSAGES.chakra[msgTone]} />
           <FreqCard freqKey={freqKey} />
@@ -544,6 +607,8 @@ function WaveTypeDiagnosis() {
   if (step >= total) {
     const winnerKey = pickWinner(scores);
     const r = WAVE_RESULTS[winnerKey];
+    const teaserPoints = WAVE_TEASER_POINTS[winnerKey] ?? [];
+    void WAVE_LINE_DETAILS; // 将来のLINE登録後ページ等で利用予定
     return (
       <Reveal>
         <div className="glass-card mx-auto max-w-md rounded-3xl p-8 text-center">
@@ -556,19 +621,26 @@ function WaveTypeDiagnosis() {
           <h2 className="mt-5 font-display text-2xl" style={{ color: r.color }}>
             {r.name}
           </h2>
-          <div className="mt-3 flex flex-wrap justify-center gap-2">
-            {r.keywords.map((k) => (
-              <span
-                key={k}
-                className="rounded-full bg-moon-100 px-3 py-1 text-xs text-plum-900/60"
-              >
-                {k}
-              </span>
+
+          {/* 特徴（ティザー：3つのみ表示） */}
+          <ul className="mt-5 space-y-1.5 text-left">
+            {teaserPoints.map((p) => (
+              <li key={p} className="flex items-center gap-2 text-sm text-plum-900/75">
+                <span className="text-lavender-deep">・</span>
+                {p}
+              </li>
             ))}
-          </div>
-          <p className="mt-5 text-left text-sm leading-relaxed text-plum-900/75">
-            {r.desc}
-          </p>
+          </ul>
+
+          {/* LINE限定詳細ゲート */}
+          <LineGateTeaser
+            points={[
+              "波動タイプの詳細解説",
+              "おすすめの過ごし方",
+              "相性の良い色・パワーストーン",
+              "Serenaからのメッセージ",
+            ]}
+          />
 
           <SerenaMessage text={SERENA_MESSAGES.wave[winnerKey]} />
           <FreqCard freqKey={winnerKey} />
