@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import MoonMark from "@/components/MoonMark";
 import SerenaFooterCard from "@/components/SerenaFooterCard";
 import ReadingCTABanner from "@/components/ReadingCTABanner";
+`import FreeGiftBanner from "@/components/FreeGiftBanner";`
 import SnsSection from "@/components/SnsSection";
 import { SNS } from "@/data/sns";
 
