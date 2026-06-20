@@ -1306,3 +1306,176 @@ export default function DiagnosisPage() {
     </div>
   );
 }
+// ============================================================
+// ↓↓↓ この内容を src/data/diagnosis.ts の「一番下」に
+//     そのまま追加（コピペ）してください ↓↓↓
+//     （既存のコードは一切変更不要。末尾に追記するだけです）
+// ============================================================
+
+/* ============ LINE限定詳細データ（導線改善用） ============ */
+// HPでは teaser（3つの特徴）までしか見せず、詳細はLINE登録後に解放する設計です。
+
+export type AuraLineDetail = {
+  strength: string;       // オーラの強み
+  howToBalance: string;   // オーラの整え方
+  goodColor: string;      // 相性の良い色
+  goodStone: string;      // 相性の良いパワーストーン
+  serenaMessage: string;  // Serenaからのメッセージ（詳細版）
+};
+
+export const AURA_TEASER_POINTS: Record<string, string[]> = {
+  lavender: ["共感力が高い", "癒しの力を持つ", "感情を受け取りやすい"],
+  green: ["思いやりにあふれている", "自然と調和する力がある", "人を支える存在"],
+  blue: ["誠実さが伝わりやすい", "言葉で表現する力がある", "信頼を築きやすい"],
+  gold: ["前向きなエネルギーがある", "行動力がある", "周りを明るくする"],
+  white: ["変化を受け入れる力がある", "純粋な感性を持つ", "新しい流れを引き寄せる"],
+};
+
+export const AURA_LINE_DETAILS: Record<string, AuraLineDetail> = {
+  lavender: {
+    strength: "繊細な感受性で、人の気持ちにそっと寄り添える力があります。芸術的な感性も豊かです。",
+    howToBalance: "一人の静かな時間を意識的につくること。月光浴や瞑想が特に合っています。",
+    goodColor: "紫・ラベンダー・銀",
+    goodStone: "アメジスト・ムーンストーン",
+    serenaMessage: "あなたの感性は、誰かを癒すための大切な力です。無理に強くならなくて大丈夫。そのままのあなたで十分なんですよ。",
+  },
+  green: {
+    strength: "人を支える力と、自然と調和するエネルギーを持っています。場の空気をやわらげる存在です。",
+    howToBalance: "自然の中で過ごす時間を増やすこと。植物や緑に触れることで波動が整いやすくなります。",
+    goodColor: "グリーン・ピンク",
+    goodStone: "ローズクォーツ・グリーンアベンチュリン",
+    serenaMessage: "あなたが与えているやさしさは、ちゃんと届いています。たまには自分自身も、その輪の中に入れてあげてくださいね。",
+  },
+  blue: {
+    strength: "誠実な言葉で人とつながる力。コミュニケーションを通じて信頼を築くのが得意です。",
+    howToBalance: "喉のチャクラを意識し、声に出して気持ちを表現する時間をつくること。",
+    goodColor: "ブルー・ターコイズ",
+    goodStone: "ラピスラズリ・アクアマリン",
+    serenaMessage: "あなたの言葉には、思っている以上の力があります。素直な気持ちを、これからも大切にしてくださいね。",
+  },
+  gold: {
+    strength: "前へ進む推進力と、人を惹きつけるあたたかさを兼ね備えています。",
+    howToBalance: "小さな目標を立てて、達成する喜びを積み重ねること。日光を浴びる時間も効果的です。",
+    goodColor: "ゴールド・オレンジ",
+    goodStone: "シトリン・タイガーアイ",
+    serenaMessage: "あなたの一歩は、まわりにも温かい光を広げています。自信を持って、その道を進んでくださいね。",
+  },
+  white: {
+    strength: "純粋な感性と、変化を受け入れる柔軟さを持っています。新しいステージへ導く力があります。",
+    howToBalance: "手放したいものをそっとリストにしてみること。浄化のための白い光をイメージする瞑想もおすすめです。",
+    goodColor: "ホワイト・シルバー",
+    goodStone: "水晶・セレナイト",
+    serenaMessage: "今のあなたは、新しい景色の入り口に立っています。焦らず、その変化をそっと受け止めてくださいね。",
+  },
+};
+
+export type ChakraLineDetail = {
+  detail: string;
+  balanceMethod: string;
+  recommendedHealing: string;
+  serenaMessage: string;
+};
+
+// 最もケアが必要なチャクラ（lowest）に対するLINE限定詳細
+export const CHAKRA_LINE_DETAILS: Record<string, ChakraLineDetail> = {
+  root: {
+    detail: "生活の基盤や安心感に関わるチャクラです。バランスが乱れると、漠然とした不安を感じやすくなります。",
+    balanceMethod: "裸足で土や床に触れる、規則正しい生活リズムを意識するなど、地に足をつける行動が効果的です。",
+    recommendedHealing: "396Hzの解放の周波数",
+    serenaMessage: "まずは安心できる土台を、少しずつ整えていきましょう。あなたのペースで大丈夫ですよ。",
+  },
+  sacral: {
+    detail: "感情や創造性に関わるチャクラです。乱れると感情を抑え込みやすくなります。",
+    balanceMethod: "好きなことを純粋に楽しむ時間、創作活動や水に触れることが整えに役立ちます。",
+    recommendedHealing: "528Hzの愛の周波数",
+    serenaMessage: "感じたことを、もっと自由に表現してもいいんですよ。あなたの感情はとても大切なものです。",
+  },
+  solar: {
+    detail: "自信や意志力に関わるチャクラです。乱れると自己肯定感が下がりやすくなります。",
+    balanceMethod: "小さな成功体験を積み重ねること、姿勢を正して深く呼吸することが効果的です。",
+    recommendedHealing: "528Hzの愛の周波数",
+    serenaMessage: "あなたにはちゃんと『できる力』があります。一歩ずつ、自信を取り戻していきましょう。",
+  },
+  heart: {
+    detail: "愛とつながりに関わるチャクラです。乱れると人を信じることに不安を感じやすくなります。",
+    balanceMethod: "感謝の気持ちを言葉にすること、自分自身にもやさしさを向けることが大切です。",
+    recommendedHealing: "639Hzの調和の周波数",
+    serenaMessage: "あなたが誰かに向けているやさしさを、少しだけ自分にも向けてあげてくださいね。",
+  },
+  throat: {
+    detail: "表現とコミュニケーションに関わるチャクラです。乱れると本音を飲み込みやすくなります。",
+    balanceMethod: "声に出して気持ちを伝える練習、歌うことや日記をつけることが効果的です。",
+    recommendedHealing: "741Hzの浄化の周波数",
+    serenaMessage: "あなたの言葉を、もっと外に出してもいいんですよ。きっと誰かに届いています。",
+  },
+  third_eye: {
+    detail: "直感と洞察力に関わるチャクラです。乱れると考えすぎて疲れやすくなります。",
+    balanceMethod: "瞑想や静かな時間を持つこと、直感を信じて小さな選択をしてみることが効果的です。",
+    recommendedHealing: "852Hzの直感の周波数",
+    serenaMessage: "頭で考えすぎず、心の声にそっと耳を傾けてみてくださいね。",
+  },
+  crown: {
+    detail: "精神性と宇宙とのつながりに関わるチャクラです。乱れると目的を見失いやすくなります。",
+    balanceMethod: "静かに自分自身と向き合う時間、自然や星空とつながる瞑想が効果的です。",
+    recommendedHealing: "963Hzの宇宙の周波数",
+    serenaMessage: "答えはすぐに見つからなくても大丈夫。あなたの歩みには、ちゃんと意味がありますよ。",
+  },
+};
+
+export type WaveLineDetail = {
+  strength: string;
+  howToBalance: string;
+  goodColor: string;
+  goodStone: string;
+  serenaMessage: string;
+};
+
+export const WAVE_TEASER_POINTS: Record<string, string[]> = {
+  moon: ["静かで穏やかな波動", "人に寄り添う共感力", "控えめだけど芯がある"],
+  passion: ["内側から湧き上がる熱量", "発想力にあふれている", "行動に移すスピードが早い"],
+  guardian: ["安定感とやさしさ", "大切なものを守る力", "そばにいるだけで安心される"],
+  seeker: ["知的好奇心が強い", "新しい世界に惹かれる", "学び続ける探求心"],
+  master: ["経験を伝える力", "導く存在になりやすい", "精神的な深さがある"],
+};
+
+export const WAVE_LINE_DETAILS: Record<string, WaveLineDetail> = {
+  moon: {
+    strength: "人の心にそっと寄り添う共感力。静かな存在感で、まわりを安心させます。",
+    howToBalance: "夜の静かな時間を大切にすること。月光浴や瞑想が特に合っています。",
+    goodColor: "シルバー・ラベンダー",
+    goodStone: "ムーンストーン・アメジスト",
+    serenaMessage: "あなたの静けさは、誰かにとっての安心になっています。焦らず、あなたのペースで進んでくださいね。",
+  },
+  passion: {
+    strength: "心が動いた瞬間に行動できる推進力。創造的な発想で周りを巻き込む力があります。",
+    howToBalance: "アイデアをメモする習慣、体を動かしてエネルギーを発散することが効果的です。",
+    goodColor: "オレンジ・レッド",
+    goodStone: "カーネリアン・サンストーン",
+    serenaMessage: "あなたの『やってみたい』という気持ちを、これからも大切にしてくださいね。",
+  },
+  guardian: {
+    strength: "安定感とやさしさで、大切な人やものをそっと支える力があります。",
+    howToBalance: "自分自身をケアする時間も意識的につくること。頑張りすぎないことが大切です。",
+    goodColor: "グリーン・ブラウン",
+    goodStone: "グリーンアベンチュリン・スモーキークォーツ",
+    serenaMessage: "あなたが支えているものは、あなたがいることでちゃんと守られています。たまには自分も労わってくださいね。",
+  },
+  seeker: {
+    strength: "知的好奇心と洞察力。答えのない問いに向き合い続ける探求心があります。",
+    howToBalance: "新しい本や情報に触れる時間、静かに思考を整理する時間をつくること。",
+    goodColor: "パープル・ブルー",
+    goodStone: "ラピスラズリ・フローライト",
+    serenaMessage: "答えがまだ見えなくても、その探求の時間こそがあなたを成長させていますよ。",
+  },
+  master: {
+    strength: "経験を分かち合い、人を導く力。精神的な深さで信頼を集めます。",
+    howToBalance: "経験を言葉や形にして誰かに伝えること。教えることで自分も学びが深まります。",
+    goodColor: "ゴールド・パープル",
+    goodStone: "タイガーアイ・スギライト",
+    serenaMessage: "あなたが歩んできた道は、すでに誰かの道しるべになっています。少しずつ分けてあげてくださいね。",
+  },
+};
+
+// ============================================================
+// ↑↑↑ ここまでを diagnosis.ts の末尾に追加してください ↑↑↑
+// ============================================================
