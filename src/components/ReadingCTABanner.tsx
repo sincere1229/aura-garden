@@ -18,6 +18,32 @@ export default function ReadingCTABanner() {
             オーラ・チャクラ・波動タイプをもとに、今のあなたに必要なメッセージをSerenaがやさしくお届けします。
             恋愛・仕事・人間関係・これからの流れなど、あなた専用の鑑定書としてお受け取りいただけます。
           </p>
+
+          {/* 無料診断では分からない項目（最終導線改善 修正②） */}
+          <div className="mx-auto mt-6 max-w-md rounded-2xl bg-white/10 p-5 text-left">
+            <p className="text-xs leading-relaxed text-white/80">
+              無料診断では分からない
+            </p>
+            <ul className="mt-2 space-y-1.5">
+              {[
+                "オーラの深層",
+                "チャクラバランス",
+                "心の状態",
+                "今後の流れ",
+                "相性の良いパワーストーン",
+                "Serenaからの特別メッセージ",
+              ].map((p) => (
+                <li key={p} className="flex items-center gap-2 text-xs text-white/85">
+                  <span>✓</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs leading-relaxed text-white/80">
+              をまとめた鑑定書をお届けします。
+            </p>
+          </div>
+
           <a
             href={SNS.reading.url}
             target="_blank"
