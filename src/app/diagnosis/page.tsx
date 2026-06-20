@@ -12,7 +12,6 @@ import {
   AURA_LINE_DETAILS,
   CHAKRAS,
   CHAKRA_QUESTIONS,
-  CHAKRA_OPTS,
   CHAKRA_FREQ_MAP,
   CHAKRA_LINE_DETAILS,
   WAVE_QUESTIONS,
@@ -27,6 +26,7 @@ import {
   type ChoiceQuestion,
 } from "@/data/diagnosis";
 import { ENTERTAINMENT_NOTE } from "@/data/frequency";
+import { SNS } from "@/data/sns";
 import DiagnosisLineBanner from "@/components/DiagnosisLineBanner";
 import MoonOracleCard from "@/components/MoonOracleCard";
 
@@ -65,6 +65,9 @@ function SerenaMessage({ text }: { text: string }) {
           Serena より
         </p>
         <p className="mt-1 text-sm leading-relaxed text-plum-900/80">{text}</p>
+        <p className="mt-2 text-[11px] text-plum-900/40">
+          この続きのメッセージは LINE限定でお届けしています。
+        </p>
       </div>
     </div>
   );
@@ -108,18 +111,60 @@ function ReadingCTA() {
       <Starfield count={16} />
       <div className="relative">
         <p className="font-display text-lg leading-relaxed">
-          もっと深く、あなただけの鑑定書を
+          Serenaがあなただけのために<br />鑑定書をお作りします
         </p>
-        <p className="mt-2 text-xs leading-relaxed text-white/85">
-          Serena があなたの結果をもとに、詳しいオーラ・チャクラ鑑定書をお届けします。
-        </p>
+
+        {/* 説明文（鑑定導線修正②） */}
+        <div className="mt-4 rounded-xl bg-white/10 p-4 text-left">
+          <p className="text-xs leading-relaxed text-white/85">
+            今回の無料診断では、あなたの状態の一部をご案内しています。個別鑑定では
+          </p>
+          <ul className="mt-2 space-y-1">
+            {[
+              "オーラ詳細分析",
+              "チャクラバランス",
+              "心の状態",
+              "今後の流れ",
+              "あなたに必要な行動",
+              "相性の良いパワーストーン",
+              "Serenaからの特別メッセージ",
+            ].map((p) => (
+              <li key={p} className="flex items-center gap-1.5 text-[11px] text-white/85">
+                <span>✓</span>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs leading-relaxed text-white/85">
+            をまとめた鑑定書をお届けします。
+          </p>
+        </div>
+
+        {/* ボタン文言（鑑定導線修正③：推奨「Serena鑑定を申し込む」） */}
         <Link
           href={READING_PRODUCT_URL}
-          className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
+          className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-medium tracking-wide text-lavender-deep shadow-lg transition-transform hover:scale-[1.03]"
         >
-          詳しい鑑定書を見る
+          🌙 Serena鑑定を申し込む
           <span aria-hidden="true">→</span>
         </Link>
+
+        {/* 安心感表示（鑑定導線修正④） */}
+        <p className="mt-3 text-[11px] text-white/60">
+          現在はココナラにて鑑定を受付しています。
+        </p>
+
+        {/* ココナラ実績表示（鑑定導線修正⑤） */}
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
+          {["PDF納品", "オーダーメイド鑑定", "3日以内納品"].map((p) => (
+            <span
+              key={p}
+              className="rounded-full bg-white/15 px-3 py-1 text-[10px] text-white/85"
+            >
+              ✓ {p}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -246,29 +291,81 @@ function StartScreen({
 
 /* ===================== LINE限定詳細 ティザーブロック（共通） ===================== */
 // 指示書の「もっと詳しく知りたいですか？」セクション。
-// オーラ・チャクラ・波動それぞれの詳細項目ラベルだけ渡せば共通レイアウトで出せるようにする。
+// オーラ・チャクラ・波動それぞれの追加特典（診断固有の内容）だけ渡せば
+// 共通の「🎁LINE登録特典」レイアウトで出せるようにする。
+// 指示書（診断結果ページ改善 修正①）に準拠：
+// 「LINE登録すると何がもらえるのか」を明確にする設計。
 
 function LineGateTeaser({
-  points,
+  extraPoints,
 }: {
-  points: string[]; // 例: ["オーラの強み", "オーラの整え方", "相性の良い色", "相性の良いパワーストーン", "Serenaからのメッセージ"]
+  extraPoints: string[]; // 例: ["あなたのオーラ詳細解説", "相性の良い色", "相性の良いパワーストーン"]
 }) {
   return (
-    <div className="mt-6 rounded-2xl border border-dashed border-lavender-300 bg-white/50 p-5 text-left">
-      <p className="text-center text-sm font-medium text-plum-900/80">
-        もっと詳しく知りたいですか？
+    <div className="mt-6 overflow-hidden rounded-2xl border border-lavender-200 bg-gradient-to-br from-moon-100 to-[#eef6f8] p-5 text-left">
+      <p className="text-center text-sm font-bold text-plum-900/85">
+        🎁 LINE登録特典
       </p>
-      <ul className="mt-3 space-y-1.5">
-        {points.map((p) => (
-          <li key={p} className="flex items-center gap-2 text-sm text-plum-900/70">
+      <p className="mt-1 text-center font-display text-base text-plum-900">
+        月のヒーリングBOOK　無料プレゼント
+      </p>
+
+      <ul className="mt-4 space-y-1.5">
+        {[
+          "オーラの整え方",
+          "チャクラセルフケア",
+          "月光浴ワーク",
+          "Serenaからの特別メッセージ",
+        ].map((p) => (
+          <li key={p} className="flex items-center gap-2 text-sm text-plum-900/75">
             <span className="text-lavender-deep">✓</span>
             {p}
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-center text-xs font-medium tracking-wide text-lavender-deep">
-        LINE限定公開
+
+      <p className="mt-3 text-xs text-plum-900/55">さらに</p>
+      <ul className="mt-1.5 space-y-1.5">
+        {extraPoints.map((p) => (
+          <li key={p} className="flex items-center gap-2 text-sm text-plum-900/75">
+            <span className="text-lavender-deep">✓</span>
+            {p}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 text-xs text-plum-900/55">も受け取れます</p>
+
+      <Link
+        href={SNS.line.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.02]"
+        style={{ background: "#06C755" }}
+      >
+        🎁 無料で受け取る
+      </Link>
+    </div>
+  );
+}
+
+function MoonCardLineFooter() {
+  return (
+    <div className="mt-4 rounded-2xl border border-lavender-200 bg-white/50 p-4 text-center">
+      <p className="text-xs leading-relaxed text-plum-900/60">
+        今日のMoon Cardは毎日変化します。
       </p>
+      <p className="mt-1 text-xs leading-relaxed text-plum-900/60">
+        さらに、毎朝Serenaからのメッセージを LINEで受け取れます。
+      </p>
+      <Link
+        href={SNS.line.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-xs font-bold text-white shadow-md transition-transform hover:scale-[1.03]"
+        style={{ background: "#06C755" }}
+      >
+        🌙 ヒーリングBOOKを受け取る
+      </Link>
     </div>
   );
 }
@@ -341,14 +438,12 @@ function AuraDiagnosis() {
             ))}
           </ul>
 
-          {/* LINE限定詳細ゲート */}
+          {/* LINE登録特典（オーラ詳細解説・相性の良い色・パワーストーン） */}
           <LineGateTeaser
-            points={[
-              "オーラの強み",
-              "オーラの整え方",
+            extraPoints={[
+              "あなたのオーラ詳細解説",
               "相性の良い色",
               "相性の良いパワーストーン",
-              "Serenaからのメッセージ",
             ]}
           />
 
@@ -356,6 +451,7 @@ function AuraDiagnosis() {
           <FreqCard freqKey={winnerKey} />
           {/* ★ Moon Oracle カード */}
           <MoonOracleCard seed={oracleSeed} />
+          <MoonCardLineFooter />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
@@ -497,13 +593,12 @@ function ChakraDiagnosis() {
             </p>
           </div>
 
-          {/* LINE限定詳細ゲート */}
+          {/* LINE登録特典（チャクラ詳細解説・バランス調整方法） */}
           <LineGateTeaser
-            points={[
+            extraPoints={[
               "チャクラ詳細解説",
               "バランス調整方法",
               "おすすめヒーリング",
-              "Serenaからのメッセージ",
             ]}
           />
 
@@ -511,6 +606,7 @@ function ChakraDiagnosis() {
           <FreqCard freqKey={freqKey} />
           {/* ★ Moon Oracle カード */}
           <MoonOracleCard seed={overall} />
+          <MoonCardLineFooter />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
@@ -551,7 +647,7 @@ function ChakraDiagnosis() {
           {q.q}
         </p>
         <div className="mt-6 flex flex-col gap-3">
-          {CHAKRA_OPTS.map((o, i) => (
+          {q.opts.map((o, i) => (
             <button
               key={i}
               onClick={() => answer(o.v)}
@@ -632,13 +728,12 @@ function WaveTypeDiagnosis() {
             ))}
           </ul>
 
-          {/* LINE限定詳細ゲート */}
+          {/* LINE登録特典（波動タイプ詳細解説・おすすめの過ごし方） */}
           <LineGateTeaser
-            points={[
+            extraPoints={[
               "波動タイプの詳細解説",
               "おすすめの過ごし方",
               "相性の良い色・パワーストーン",
-              "Serenaからのメッセージ",
             ]}
           />
 
@@ -646,6 +741,7 @@ function WaveTypeDiagnosis() {
           <FreqCard freqKey={winnerKey} />
           {/* ★ Moon Oracle カード */}
           <MoonOracleCard seed={Object.values(scores).reduce((a, b) => a + b, 0)} />
+          <MoonCardLineFooter />
           <YoutubeLink />
           <ReadingCTA />
           <ShareSaveRow
