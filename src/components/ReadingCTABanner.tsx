@@ -15,9 +15,21 @@ export default function ReadingCTABanner() {
             Serenaから、あなたへ
           </h2>
 
-          {/* 鑑定セクション コピー改善：無料診断は入り口、個別鑑定で何を読み解くか */}
+          {/* 冒頭文章：入り口の説明＋共感の問いかけ＋個別鑑定で読み解く内容 */}
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/85">
-            無料診断は、現在の状態を知るための入り口です。個別鑑定では、
+            無料診断は、現在の状態を知るための入り口です。
+          </p>
+          <p className="mx-auto mt-3 max-w-md text-sm italic leading-relaxed text-white/80">
+            「なぜこんな気持ちになるのだろう」
+            <br />
+            「本当は何を大切にしたいのだろう」
+          </p>
+          <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-white/70">
+            そんな想いを抱えている方へ。
+          </p>
+
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/85">
+            個別鑑定では、
           </p>
           <ul className="mx-auto mt-3 max-w-sm space-y-1.5 text-left">
             {[
@@ -36,10 +48,10 @@ export default function ReadingCTABanner() {
             を、Serenaがやさしく読み解きます。恋愛・仕事・人間関係・将来への不安など、あなただけのためのメッセージを鑑定書としてお届けします。
           </p>
 
-          {/* 個別鑑定でお届けする内容（見出し変更） */}
+          {/* 見出し変更：🌙 Serenaがお届けするメッセージ */}
           <div className="mx-auto mt-6 max-w-md rounded-2xl bg-white/10 p-5 text-left">
             <p className="text-xs leading-relaxed text-white/80">
-              個別鑑定でお届けする内容
+              🌙 Serenaがお届けするメッセージ
             </p>
             <ul className="mt-2 space-y-1.5">
               {[
@@ -56,12 +68,12 @@ export default function ReadingCTABanner() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* オーダーメイド訴求（チェックリスト下・ボタン直前） */}
-          <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/75">
-            🌙 一人ひとりの結果をもとに作成するため、完全オーダーメイドでお届けしています。
-          </p>
+            {/* オーダーメイド訴求（チェックリスト下） */}
+            <p className="mt-4 text-xs leading-relaxed text-white/75">
+              🌙 一人ひとりの診断結果をもとに、あなたのためだけの鑑定書を作成しています。
+            </p>
+          </div>
 
           <a
             href={SNS.reading.url}
@@ -74,8 +86,10 @@ export default function ReadingCTABanner() {
           </a>
 
           {/* ボタン下の補足 */}
-          <p className="mt-3 text-[11px] text-white/60">
-            現在はココナラにて受付中です。PDF形式でお届けします。
+          <p className="mt-3 text-[11px] leading-relaxed text-white/60">
+            現在はココナラにて受付中です
+            <br />
+            PDF形式でお届けします・3日以内納品
           </p>
         </div>
       </div>
