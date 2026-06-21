@@ -8,15 +8,16 @@ import LineGateCard from "@/components/LineGateCard";
 import { CRYSTALS, getCrystalBySlug } from "@/data/crystals";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
   return CRYSTALS.map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const crystal = getCrystalBySlug(params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const crystal = getCrystalBySlug(slug);
   if (!crystal) {
     return { title: "Crystal Garden | Aura Garden" };
   }
@@ -26,8 +27,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function CrystalDetailPage({ params }: Props) {
-  const crystal = getCrystalBySlug(params.slug);
+export default async function CrystalDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const crystal = getCrystalBySlug(slug);
   if (!crystal) notFound();
 
   return (
