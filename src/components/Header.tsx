@@ -5,8 +5,9 @@ const links = [
   { href: "/", label: "Top" },
   { href: "/music", label: "Music" },
   { href: "/diagnosis", label: "Diagnosis" },
-   { href: "/crystal", label: "Crystal" },
+  { href: "/crystal", label: "Crystal" },
   { href: "/frequency", label: "Tuner" },
+  { href: "/column", label: "Column" },
   { href: "/serena", label: "Serena" },
   { href: "/affirmation", label: "Affirmation" },
 ];
