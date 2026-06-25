@@ -13,6 +13,7 @@ import CrystalGardenTeaser from "@/components/CrystalGardenTeaser";
 import ComingSoonSection from "@/components/ComingSoonSection";
 import { SNS } from "@/data/sns";
 
+
 export const metadata: Metadata = {
   title: "Aura Garden | あなた本来の光を思い出す場所",
   description:
