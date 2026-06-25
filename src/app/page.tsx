@@ -88,6 +88,9 @@ export default function Home() {
         </div>
       </section>
 
+     {/* 🌙 LINE相談セクション（メイン） */}
+      <LineConsultSection />
+
       {/* 🎁 無料プレゼント（LINE登録導線） */}
       <FreeGiftBanner />
 
@@ -244,6 +247,9 @@ export default function Home() {
 
       {/* ⑦ 個別鑑定CTA（2つ目） */}
       <ReadingCTABanner />
+
+     {/* 🌙 LINE相談セクション（コンパクト・再掲） */}
+      <LineConsultSection compact />
 
       {/* Coming Soon（最終導線改善 修正⑤・トップ下部） */}
       <ComingSoonSection />
