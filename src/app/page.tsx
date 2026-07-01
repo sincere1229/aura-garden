@@ -202,8 +202,10 @@ export default function Home() {
           <Reveal delay={100} className="order-1 max-w-xl text-center sm:order-2 sm:text-left">
             <p className="moon-divider justify-center text-xs uppercase tracking-[0.35em] text-lavender-deep sm:justify-start">Our Guide</p>
             <h2 className="mt-4 font-display text-3xl text-plum-900 sm:text-4xl">月のヒーラー Serena</h2>
-            <p className="mt-4 text-sm leading-relaxed text-plum-900/65 sm:text-base">
-              シルバーラベンダーの髪と、アクアブルーの瞳を持つ Aura Garden の公式キャラクター。月光・蓮・星空をモチーフに、訪れる人をやさしく癒しの世界へ案内します。
+            <p className="mt-4 text-sm leading-relaxed text-plum-900/65 sm:text-base whitespace-pre-line">
+              シルバーラベンダーの髪とアクアブルーの瞳を持つ、Aura Gardenの案内人。{"\n"}
+              月光や蓮の優しさをまとい、日々がんばりすぎて心が曇ってしまったあなたの隣にそっと寄り添います。{"\n"}
+              誰にも言えない涙や不安を、静かな月明かりのような温かさで癒しの世界へと導きます。
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
               <Link href="/serena" className="inline-flex items-center gap-2 rounded-full bg-lavender-deep px-6 py-3 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]">
