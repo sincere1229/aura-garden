@@ -15,7 +15,7 @@ import { SNS } from "@/data/sns";
 
 
 export const metadata: Metadata = {
-  title: "Aura Garden | あなた本来の光を思い出す場所",
+  title: "Aura Garden | がんばるあなたへ贈る、心のオーラ無料診断",
   description:
     "Aura Garden は、月のヒーラー Serena とともに贈るヒーリング音楽ブランド。ヒーリング音楽・オーラ診断・アファメーションで、心を静かに整えます。",
 };
@@ -32,18 +32,19 @@ export default function Home() {
               Moonlight Healing
             </p>
             <h1 className="mt-6 font-display text-4xl leading-tight tracking-wide text-plum-900 sm:text-6xl">
-              あなた本来の<br />光を思い出す場所
+              「がんばる」を一度お休みして、<br />あなたの心の声を聴く場所
             </h1>
             <p className="mt-6 text-base leading-relaxed text-plum-900/70 sm:text-lg">
-              月のヒーラー Serena とともに贈るヒーリング音楽ブランド。
-              睡眠・瞑想・安心のひとときに、静かな波動をお届けします。
+              毎日まわりに気を遣いすぎて、ヘトヘトになっていませんか？
+              月のヒーラー Serena が、今のあなたのオーラやチャクラの状態をやさしく紐解きます。
+              まずは1分、あなたの心が求めている「癒やしの成分」を無料で診断してみましょう。
             </p>
             <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:items-start">
               <Link
                 href="/diagnosis"
-                className="inline-flex items-center gap-2 rounded-full bg-lavender-deep px-7 py-3.5 text-sm font-medium tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 rounded-full bg-lavender-deep px-8 py-4 text-base font-bold tracking-wide text-white shadow-lg shadow-lavender-deep/20 transition-transform hover:scale-[1.03]"
               >
-                無料診断をはじめる <span aria-hidden="true">→</span>
+                無料オーラ診断をはじめる <span aria-hidden="true">→</span>
               </Link>
               <a
                 href={SNS.youtube.url}
@@ -88,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-     {/* 🌙 LINE相談セクション（メイン） */}
+      {/* 🌙 LINE相談セクション（メイン） */}
       <LineConsultSection />
 
       {/* 🎁 無料プレゼント（LINE登録導線） */}
@@ -248,7 +249,7 @@ export default function Home() {
       {/* ⑦ 個別鑑定CTA（2つ目） */}
       <ReadingCTABanner />
 
-     {/* 🌙 LINE相談セクション（コンパクト・再掲） */}
+      {/* 🌙 LINE相談セクション（コンパクト・再掲） */}
       <LineConsultSection compact />
 
       {/* Coming Soon（最終導線改善 修正⑤・トップ下部） */}
