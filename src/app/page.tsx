@@ -31,8 +31,11 @@ export default function Home() {
             <p className="moon-divider justify-center text-xs uppercase tracking-[0.35em] text-lavender-deep sm:justify-start">
               Moonlight Healing
             </p>
-            <h1 className="mt-6 font-display text-4xl leading-tight tracking-wide text-plum-900 sm:text-6xl">
-              「がんばる」を一度お休みして、<br />あなたの心の声を聴く場所
+            <h1 className="mt-6 font-display text-4xl leading-tight tracking-wide text-plum-900 sm:text-6xl whitespace-pre-line">
+              「がんばる」を{"\n"}
+              一度お休みして、{"\n"}
+              あなたの心の声を{"\n"}
+              聴く場所
             </h1>
             <p className="mt-6 text-base leading-relaxed text-plum-900/70 sm:text-lg">
               毎日まわりに気を遣いすぎて、ヘトヘトになっていませんか？
