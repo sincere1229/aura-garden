@@ -48,16 +48,18 @@ export default function SerenaPage() {
               />
             </div>
           </Reveal>
-          <Reveal delay={100} className="max-w-xl text-center sm:text-left">
-            <h2 className="font-display text-2xl text-plum-900 sm:text-3xl">
-              月の光をまとう、静かなヒーラー
+          <Reveal delay={100} className="max-w-xl text-center sm:text-left flex flex-col justify-center">
+            <h2 className="font-display text-2xl text-plum-900 sm:text-3xl whitespace-pre-line">
+              月の光をまとう、{"\n"}
+              あなたのための静かなヒーラー
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-plum-900/65 sm:text-base">
-              シルバーラベンダーの髪と、アクアブルーの瞳を持つ Serena
-              は、Aura Garden の世界を案内する月のヒーラーです。月光・蓮・星空をモチーフにまとい、訪れる人の心をやさしく解きほぐします。
+            <p className="mt-6 text-sm leading-relaxed text-plum-900/65 sm:text-base whitespace-pre-line">
+              シルバーラベンダーの髪とアクアブルー of 瞳を持つ Serena は、Aura Garden の世界をやさしく案内する月のヒーラーです。{"\n"}
+              月光や蓮の優しさをまとい、日々がんばりすぎて心が曇ってしまったあなたの隣にそっと寄り添います。
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-plum-900/65 sm:text-base">
-              彼女のテーマは「月光・癒し・睡眠・ヒーリング」。眠りにつく前のひととき、瞑想の時間、そして一日の終わりに、静かに寄り添う存在です。
+            <p className="mt-4 text-sm leading-relaxed text-plum-900/65 sm:text-base whitespace-pre-line">
+              誰にも言えない涙や不安を、静かな月明かりのような温かさで包み込み、安心できる癒しの世界へと導くのが彼女の役割。{"\n"}
+              睡眠の前や瞑想の時間、そして一日の終わりに、あなたの心をそっと緩める存在としてここにいます。
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -136,7 +138,7 @@ export default function SerenaPage() {
         <Reveal delay={100}>
           <section className="mt-20 rounded-[2.5rem] bg-gradient-to-br from-lavender-deep via-[#8a78b8] to-aqua-300 px-6 py-14 text-center text-white sm:px-12 sm:py-16">
             <p className="font-display text-xl leading-relaxed sm:text-2xl">
-              「ここでは、何もかんばらなくていいんです。
+              「ここでは、何もがんばらなくていいんです。
               <br />
               ただ静かに、光を感じてください。」
             </p>
